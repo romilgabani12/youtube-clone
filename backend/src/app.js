@@ -28,14 +28,15 @@ app.use(cookieParser())
 
 import userRouter from "./routes/user.routes.js";
 import subscriptionRoute from "./routes/subscription.routes.js";
-app.use("/api/v1/subscription" , subscriptionRoute );
+import commentRoute from "./routes/comment.routes.js";
+
 
 
 // routes declaration
 
 app.use("/api/v1/users" , userRouter );
-
-
+app.use("/api/v1/subscription" , subscriptionRoute );
+app.use("/api/v1/comment" , commentRoute );
 
 
 
