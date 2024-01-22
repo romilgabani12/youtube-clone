@@ -9,7 +9,7 @@ import { asyncHandler } from "../utils/asyncHandler.js"
  get all comments for a video
 ******************************/
 const getVideoComments = asyncHandler(async (req, res) => {
-    
+
     const { videoId } = req.params
     const { page = 1, limit = 10 } = req.query
 
@@ -46,10 +46,31 @@ const getVideoComments = asyncHandler(async (req, res) => {
             },
 
             {
+                $lookup: {
+                    from: "likes",
+                    localField: "_id",
+                    foreignField: "comment",
+                    as: "likes"
+                }
+            },
+
+            {
                 $addFields: {
                     commentOwnerDetails: {
                         $first: "$commentOwner"
-                    }
+                    },
+
+                    totalLikes: {
+                        $size: "$likes"
+                    },
+
+                    isLiked: {
+                        $cond: {
+                            if: { $in: [req.user?._id, "$likes.likedBy"] },
+                            then: true,
+                            else: false
+                        }
+                    },
                 }
             },
 
@@ -58,7 +79,9 @@ const getVideoComments = asyncHandler(async (req, res) => {
                     commentOwnerDetails: 1,
                     content: 1,
                     // video: 1,
-                    owner: 1
+                    owner: 1,
+                    totalLikes: 1,
+                    isLiked: 1
                 }
             },
 
@@ -97,7 +120,7 @@ const getVideoComments = asyncHandler(async (req, res) => {
 ******************************/
 const addComment = asyncHandler(async (req, res) => {
 
-    
+
 
     const { videoId } = req.params;
 
@@ -145,7 +168,7 @@ const addComment = asyncHandler(async (req, res) => {
 ******************************/
 
 const updateComment = asyncHandler(async (req, res) => {
-    
+
 
     const { commentId } = req.params;
 
@@ -200,7 +223,7 @@ const updateComment = asyncHandler(async (req, res) => {
  delete a comment
 ******************************/
 const deleteComment = asyncHandler(async (req, res) => {
-    
+
 
     const { commentId } = req.params;
 
