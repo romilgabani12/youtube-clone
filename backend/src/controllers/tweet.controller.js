@@ -77,10 +77,31 @@ const getUserTweets = asyncHandler(async (req, res) => {
         },
 
         {
+            $lookup: {
+                from: "likes",
+                localField: "_id",
+                foreignField: "tweet",
+                as: "likes"
+            }
+        },
+
+        {
             $addFields: {
                 tweetsUserDetails: {
                     $first: "$contents"
-                }
+                },
+
+                totalLikes: {
+                    $size: "$likes"
+                },
+
+                isLiked: {
+                    $cond: {
+                        if: { $in: [req.user?._id, "$likes.likedBy"] },
+                        then: true,
+                        else: false
+                    }
+                },
             }
         },
 
@@ -88,6 +109,8 @@ const getUserTweets = asyncHandler(async (req, res) => {
             $project: {
                 tweetsUserDetails: 1,
                 content: 1,
+                totalLikes: 1,
+                isLiked: 1
 
             }
         }
