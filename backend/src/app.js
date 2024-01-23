@@ -33,6 +33,8 @@ import tweetRoute from "./routes/tweet.routes.js";
 import likeRoute from "./routes/like.routes.js";
 import videoRoute from "./routes/video.routes.js";
 import playList from "./routes/playlist.routes.js";
+import healthcheckRouter from "./routes/healthcheck.routes.js"
+import dashboardRouter from "./routes/dashboard.routes.js"
 
 // routes declaration
 
@@ -43,5 +45,7 @@ app.use("/api/v1/tweet" , tweetRoute );
 app.use("/api/v1/like" ,  likeRoute);
 app.use("/api/v1/video" , videoRoute );
 app.use("/api/v1/playlist" , playList );
+app.use("/api/v1/healthcheck", healthcheckRouter)
+app.use("/api/v1/dashboard", dashboardRouter)
 
 export { app }
