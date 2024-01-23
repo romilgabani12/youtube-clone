@@ -1,15 +1,12 @@
 # YouTube Backend
----
+
 
 ## Introduction
----
 
 This is a YouTube backend project that covers allmost the functionalities of YouTube and also combines the Tweet functionality from twitter into it. Find more about his project in the documentaion below.
 
----
 
 ## Features
----
 
 ### User Management:
 
