@@ -66,7 +66,7 @@ This is a YouTube backend project that covers allmost the functionalities of You
 
 1. Clone the repository:
 
-`git clone https://github.com/romilgabani12/youtube-clone.git`
+```git clone https://github.com/romilgabani12/youtube-clone.git```
 
 2. Install dependencies:
 
@@ -90,4 +90,4 @@ This is a YouTube backend project that covers allmost the functionalities of You
 
 4. Start the server:
 
-`npm run dev`
+```npm run dev```
