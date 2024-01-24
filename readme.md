@@ -61,3 +61,33 @@ This is a YouTube backend project that covers allmost the functionalities of You
 - Express.js
 - MongoDB
 - Cloudinary (must have an account)
+
+## Installation and Setup
+
+1. Clone the repository:
+
+`git clone https://github.com/romilgabani12/youtube-clone.git`
+
+2. Install dependencies:
+
+```bash
+  cd backend
+  npm install
+```
+
+3. Set up environment variables: Create a .env in root of project and fill in the required values :
+
+- PORT 
+- MONGODB_URI 
+- CORS_ORIGIN 
+- ACCESS_TOKEN_SECRET 
+- ACCESS_TOKEN_EXPIRY 
+- REFRESH_TOKEN_SECRET 
+- REFRESH_TOKEN_EXPIRY
+- CLOUDINARY_CLOUD_NAME
+- CLOUDINARY_API_KEY
+- CLOUDINARY_API_SECRET
+
+4. Start the server:
+
+`npm run dev`
