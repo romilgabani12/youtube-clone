@@ -276,11 +276,11 @@ const deletePlaylist = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Invalid Playlist id")
     }
 
+    const playlist = await Playlist.findByIdAndDelete(playlistId);
+
     if (playlist.owner.toString() !== req.user._id.toString()) {
         throw new ApiError(403, "You don't have permission to delete this playlist!");
     }
-
-    const playlist = await Playlist.findByIdAndDelete(playlistId);
 
     if (!playlist) {
         throw new ApiError(400, "something went wrong while deleting the Playlist")
